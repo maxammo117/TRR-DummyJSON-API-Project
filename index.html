@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Reference Room — watch shop</title>
+<meta name="description" content="Browse, search, filter and sort a catalogue of watches.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-head">
+  <a class="wordmark" href="index.html">
+    <span>The Reference</span><span class="mark">Room</span>
+  </a>
+
+  <nav class="site-nav" aria-label="Categories">
+    <button class="nav-btn" data-cat="all" aria-current="page">All watches</button>
+    <button class="nav-btn" data-cat="mens-watches">Men's</button>
+    <button class="nav-btn" data-cat="womens-watches">Women's</button>
+  </nav>
+</header>
+
+<main>
+
+  <section class="top">
+    <h1>Watch shop</h1>
+    <form class="search" role="search" id="search-form">
+      <label for="q" class="sr-only">Search watches</label>
+      <input type="search" id="q" autocomplete="off" placeholder="Search by name or brand">
+      <button type="button" id="clear" hidden aria-label="Clear search">&times;</button>
+    </form>
+  </section>
+
+  <div class="layout">
+
+    <aside class="filters" aria-label="Filters">
+      <button class="filters-toggle" id="filters-toggle" aria-expanded="false" aria-controls="filters-body">
+        Filters
+      </button>
+
+      <div class="filters-body" id="filters-body">
+
+        <fieldset>
+          <legend>Max price</legend>
+          <p class="readout" id="price-out">Any</p>
+          <input type="range" id="price" min="0" max="100" value="100">
+        </fieldset>
+
+        <fieldset>
+          <legend>Minimum rating</legend>
+          <div class="rating-btns" id="rating">
+            <button type="button" data-min="0" aria-pressed="true">Any</button>
+            <button type="button" data-min="4" aria-pressed="false">4.0+</button>
+            <button type="button" data-min="4.5" aria-pressed="false">4.5+</button>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Brand</legend>
+          <div class="brand-list" id="brands"></div>
+        </fieldset>
+
+        <button class="reset" type="button" id="reset">Clear filters</button>
+      </div>
+    </aside>
+
+    <section class="results" aria-label="Watches">
+
+      <div class="bar">
+        <p class="count" id="count" role="status" aria-live="polite">Ticking...</p>
+        <label class="sort">
+          <span>Sort</span>
+          <select id="sort">
+            <option value="az">Name A to Z</option>
+            <option value="za">Name Z to A</option>
+            <option value="new">Newest to oldest</option>
+            <option value="old">Oldest to newest</option>
+            <option value="cheap">Price low to high</option>
+            <option value="dear">Price high to low</option>
+            <option value="rated">Highest rated</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="state" id="loading">
+        <div class="spinner" aria-hidden="true"></div>
+        <p>Loading watches…</p>
+      </div>
+
+      <div class="state" id="error" hidden>
+        <p class="state-title">Could not load the watches.</p>
+        <p id="error-msg"></p>
+        <button class="btn" type="button" id="retry">Try again</button>
+      </div>
+
+      <div class="state" id="empty" hidden>
+        <p class="state-title">No watches match.</p>
+        <p>Try clearing a filter or searching for something else.</p>
+        <button class="btn" type="button" id="empty-reset">Clear filters</button>
+      </div>
+
+      <ul class="grid" id="grid"></ul>
+
+    </section>
+  </div>
+</main>
+
+<footer class="site-foot">
+  <p>Product data and photographs come from the DummyJSON demo API. Built with plain HTML, CSS and JavaScript written by Deyton Dickson.</p>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
